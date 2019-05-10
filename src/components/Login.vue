@@ -41,12 +41,6 @@
 
 export default {
   name: 'Login',
-  user: {
-    loggedIn: false,
-    username: null,
-    accessToken: null,
-    refreshToken: null,
-  },
   data: function () {
     return {
       api: {
@@ -57,16 +51,18 @@ export default {
         host: 'https://stage.apis.chatbot.gavagai.io',
         basePath: '/api/v1',
       },
-      loading: false,
+      loading: false, // boolean flag for loader.
       error: {
-        message: '',
+        message: '', 
+        // error message returned from api. 
+        //this property is bound to the dom in the el: loader_error
       }
     }
   },
   methods: {
     login() {
-      this.loading = true;
-      const { host, basePath, body } = this.api;
+      this.loading = true; //set loader boolean to true while performing login.
+      const { host, basePath, body } = this.api; //get data from data obj
       const apiPath = host + basePath + '/login';
       const optionsobj = {
         method: "POST",
